@@ -1,0 +1,18 @@
+name: Scheduled Tasks
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'  
+
+jobs:
+  run-task:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Add steps to execute your maintenance tasks or scripts
+      - name: Run maintenance script
+        run: |
+          echo "Running maintenance script..."
+
