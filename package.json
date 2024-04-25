@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node run.js",
     "test": "node run.js",
-    "docs:build": "./node_modules/.bin/jsdoc -c jsdoc.config.json"
+    "docs:build": "jsdoc -c jsdoc.config.json"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
