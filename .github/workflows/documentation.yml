@@ -1,9 +1,8 @@
 name: Documentation Deployment
 
 on:
-  push:
-    branches:
-      - docs  # Documentation branch
+  schedule:
+    - cron: '*/5 * * * *'  
 
 jobs:
   build-deploy:
