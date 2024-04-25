@@ -10,6 +10,8 @@ on:
   schedule:
     - cron: '0 0 * * *'  
   workflow_dispatch: 
+
+  
 jobs:
   custom_job:
     runs-on: ubuntu-latest
@@ -21,7 +23,6 @@ jobs:
       - name: Run custom script
         run: |
           echo "Running custom script..."
-          # Add your custom commands or scripts here
 
       - name: Perform additional task
         uses: some-action/some-action@v1
