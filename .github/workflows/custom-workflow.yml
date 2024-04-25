@@ -1,4 +1,4 @@
-name: Generate Release Notes
+name: Custom Work Flow
 
 on:
   release:
