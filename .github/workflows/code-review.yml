@@ -1,0 +1,59 @@
+name: Code Review Workflow
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Run linters and code formatters
+        run: |
+          npm run lint
+          npm run format-check
+
+      - name: Post linting feedback
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.TOKEN_GITHUB }}
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Code review feedback: Linting and formatting checks passed.'
+            })
+
+  security-scan:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Run security scan
+        run: npm run security-scan
+
+      - name: Post security scan feedback
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.TOKEN_GITHUB }}
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Code review feedback: Security scan completed.'
+            })
