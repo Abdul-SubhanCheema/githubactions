@@ -23,10 +23,7 @@ jobs:
 
       - name: Build app
         run: npm run build  
-      - name: Debug Git Config
-        run: |
-            git config --list
-            whoami
+  
 
 
   deploy:
@@ -36,7 +33,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+      - name: Debug Git Config
+        run: |
+          git config --list
+          git remote -v  # Verify remote URLs
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
