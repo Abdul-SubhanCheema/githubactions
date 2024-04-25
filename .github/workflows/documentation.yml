@@ -23,6 +23,11 @@ jobs:
 
       - name: Build app
         run: npm run build  
+      - name: Debug Git Config
+        run: |
+            git config --list
+            whoami
+
 
   deploy:
     runs-on: ubuntu-latest
